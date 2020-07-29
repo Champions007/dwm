@@ -1,3 +1,4 @@
+#include <X11/XF86keysym.h>
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -58,6 +59,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "termite", NULL };
+static const char *upvol[]   = { "/usr/bin/pamixer", "-i", "5", NULL };
+static const char *downvol[] = { "/usr/bin/pamixer", "-d", "5", NULL };
+static const char *mutevol[] = { "/usr/bin/pamixer", "-t", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -93,6 +97,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+    { MODKEY,                       XK_F11, spawn, {.v = downvol } },
+	{ MODKEY,                       XK_F9,  spawn, {.v = mutevol } },
+	{ MODKEY,                       XK_F12, spawn, {.v = upvol   } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
