@@ -57,11 +57,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "termite", NULL };
-static const char *upvol[]   = { "/usr/bin/pamixer", "-i", "5", NULL };
-static const char *downvol[] = { "/usr/bin/pamixer", "-d", "5", NULL };
-static const char *mutevol[] = { "/usr/bin/pamixer", "-t", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; // Function to spawn dmenu with keybinding.
+static const char *termcmd[]  = { "termite", NULL }; // Function to spawn terminal emulator with keybinding.
+static const char *upvol[]   = { "/usr/bin/pamixer", "-i", "5", NULL }; // Fonction to raise laptop volume with keybinding.
+static const char *downvol[] = { "/usr/bin/pamixer", "-d", "5", NULL }; // Fonction to raise laptop volume with keybinding;
+static const char *mutevol[] = { "/usr/bin/pamixer", "-t", NULL };  // Fonction to raise laptop volume with keybinding.
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
