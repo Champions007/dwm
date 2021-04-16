@@ -57,11 +57,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; // Function to spawn dmenu with keybinding.
-static const char *termcmd[]  = { "termite", NULL }; // Function to spawn terminal emulator with keybinding.
+static const char *dmenucmd[] = { "/usr/bin/dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; // Function to spawn dmenu with keybinding.
+static const char *termcmd[]  = { "/usr/bin/termite", NULL }; // Function to spawn terminal emulator with keybinding.
 static const char *upvol[]   = { "/usr/bin/pamixer", "-i", "5", NULL }; // Fonction to raise laptop volume with keybinding.
 static const char *downvol[] = { "/usr/bin/pamixer", "-d", "5", NULL }; // Fonction to raise laptop volume with keybinding;
 static const char *mutevol[] = { "/usr/bin/pamixer", "-t", NULL };  // Fonction to raise laptop volume with keybinding.
+static const char *upbrightness[] = { "/usr/bin/brightnessctl", "s", "5%+", NULL }; // Function to raise brightness.
+static const char *downbrightness[] = { "/usr/bin/brightnessctl", "s", "5%-", NULL }; // Function to lower brightness.
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -97,9 +99,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-    { MODKEY,                       XK_F11, spawn, {.v = downvol } },
-	{ MODKEY,                       XK_F9,  spawn, {.v = mutevol } },
-	{ MODKEY,                       XK_F12, spawn, {.v = upvol   } },
+    { 0,                            XF86XK_AudioLowerVolume, spawn,      {.v = downvol } },
+	{ 0,                            XF86XK_AudioMute, spawn,             {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn,      {.v = upvol   } },
+    { 0,                            XF86XK_MonBrightnessUp, spawn,       {.v = upbrightness } },
+    { 0,                            XF86XK_MonBrightnessDown, spawn,       {.v = downbrightness } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
